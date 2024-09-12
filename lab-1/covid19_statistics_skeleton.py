@@ -69,6 +69,26 @@ norm_covid = normalize_data(
     n_covid, n_people, 1000000
 )  # The new cases per 1 million people
 
+# Print population by region
+print("### Korean Population by Region")
+print(f"* Total population: {sum_people}\n")
+print("| Region | Population | Ratio (%) |")
+print("| ------ | ---------- | --------- |")
+for idx, pop in enumerate(n_people):
+    ratio = pop / sum_people * 100
+    print(f"| {regions[idx]} | {pop} | {ratio:.1f} |")
+print("\n")
+
+# Print COVID-19 new cases by region
+print("### Korean COVID-19 New Cases by Region")
+print(f"* Total new cases: {sum_covid}\n")
+print("| Region | New Cases | Ratio (%) | New cases / 1M |")
+print("| ------ | ---------- | --------- | -------------- |")
+for idx, cases in enumerate(n_covid):
+    ratio = cases / sum_covid * 100
+    print(f"| {regions[idx]} | {cases} | {ratio:.1f} | {norm_covid[idx]:.1f} |")
+print("\n")
+
 try:
     with open('covid19_statistics.md', 'w', encoding='utf-8') as f:
         # Print population by region
