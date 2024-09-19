@@ -16,26 +16,26 @@
 > along with this program. If not, see <https://www.gnu.org/licenses/>
 
 ## Assignment
-- Complete the given skeleton code (covid19_statistics_skeleton.py)
-- Submit your code (covid19_statistics.py) and its output copy (covid19_statistics.md)
-  - You need to copy and paste your printed output to a text file (covid19_statistics.md).
+- Complete the given skeleton code (class_score_analysis_skeleton.py)
+- Submit your code (class_score_analysis.py) and its output (class_score_analysis.md)
 
 ## Conditions
 - Please follow the above filename convention.
+- Please do not use other libraries such as NumPy and others. Do it yourself with only Python built-in functions.
 - You can start from scratch (without using the given skeleton code).
-  - However, you should use the same data shown in the slide 5.
+  - However, you should use the given data.
 - You can freely change the given skeleton code if necessary
 
 ## How To Run It
 Change into the lab-1 directory.
 ```PowerShell
-cd lab-1
+cd lab-2
 ```
 
 Run the Python script.
 ```PowerShell
-python .\covid19_statistics_skeleton.py
+python .\class_score_analysis_skeleton.py
 ```
 
 > [!IMPORTANT]
-> The results are directly written into the [covid19_statistics.md](./covid19_statistics.md) file.
+> The results are directly written into the [class_score_analysis.md](./class_score_analysis.md) file.

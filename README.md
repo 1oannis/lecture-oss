@@ -20,6 +20,7 @@ This repository holds the mandatory labs of the course Open-Source Software at S
 ---
 
 - [Lab-1](./lab-1/README.md)
+- [Lab-2](./lab-2/README.md)
 
 ## How to run the Labs
 In order to be able to run the labs properly you might need some dependencies installed. So you will need to create a venv and install the requirements.
