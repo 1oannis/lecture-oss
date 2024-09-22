@@ -1,4 +1,5 @@
 # Python Lab #1: Korean COVID-19 New Cases by Region
+>
 > [!NOTE]
 > Copyright 2024 - present [Ioannis Theodosiadis](mailto:ioannis@seoultech.ac.kr), SEOULTECH University
 >
@@ -16,10 +17,12 @@
 > along with this program. If not, see <https://www.gnu.org/licenses/>
 
 ## Assignment
+
 - Complete the given skeleton code (class_score_analysis_skeleton.py)
 - Submit your code (class_score_analysis.py) and its output (class_score_analysis.md)
 
 ## Conditions
+
 - Please follow the above filename convention.
 - Please do not use other libraries such as NumPy and others. Do it yourself with only Python built-in functions.
 - You can start from scratch (without using the given skeleton code).
@@ -27,12 +30,15 @@
 - You can freely change the given skeleton code if necessary
 
 ## How To Run It
+
 Change into the lab-1 directory.
+
 ```PowerShell
 cd lab-2
 ```
 
 Run the Python script.
+
 ```PowerShell
 python .\class_score_analysis_skeleton.py
 ```

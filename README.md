@@ -1,4 +1,5 @@
 # Open-Source Software Labs
+>
 > [!NOTE]
 > Copyright 2024 - present [Ioannis Theodosiadis](mailto:ioannis@seoultech.ac.kr), SEOULTECH University
 >
@@ -23,6 +24,7 @@ This repository holds the mandatory labs of the course Open-Source Software at S
 - [Lab-2](./lab-2/README.md)
 
 ## How to run the Labs
+
 In order to be able to run the labs properly you might need some dependencies installed. So you will need to create a venv and install the requirements.
 
 > [!IMPORTANT]
@@ -31,19 +33,23 @@ In order to be able to run the labs properly you might need some dependencies in
 ```PowerShell
 python -m venv .venv
 ```
+
 Activate the virtual environment.
 
 - Windows:
+
     ```PowerShell
     .\.venv\Scripts\activate
     ```
+
 - Linux:
+
     ```bash
     source ./.venv/bin/activate
     ```
 
 Now install the dependecies.
+
 ```PowerShell
 pip install -r requirements.txt
 ```
-

@@ -1,4 +1,5 @@
 # Python Lab #1: Korean COVID-19 New Cases by Region
+>
 > [!NOTE]
 > Copyright 2024 - present [Ioannis Theodosiadis](mailto:ioannis@seoultech.ac.kr), SEOULTECH University
 >
@@ -16,23 +17,28 @@
 > along with this program. If not, see <https://www.gnu.org/licenses/>
 
 ## Assignment
+
 - Complete the given skeleton code (covid19_statistics_skeleton.py)
 - Submit your code (covid19_statistics.py) and its output copy (covid19_statistics.md)
   - You need to copy and paste your printed output to a text file (covid19_statistics.md).
 
 ## Conditions
+
 - Please follow the above filename convention.
 - You can start from scratch (without using the given skeleton code).
   - However, you should use the same data shown in the slide 5.
 - You can freely change the given skeleton code if necessary
 
 ## How To Run It
+
 Change into the lab-1 directory.
+
 ```PowerShell
 cd lab-1
 ```
 
 Run the Python script.
+
 ```PowerShell
 python .\covid19_statistics_skeleton.py
 ```
