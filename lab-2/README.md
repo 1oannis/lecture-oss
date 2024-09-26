@@ -1,4 +1,4 @@
-# Python Lab #1: Korean COVID-19 New Cases by Region
+# Python Lab #2: Midterm and Final Exam Analysis
 >
 > [!NOTE]
 > Copyright 2024 - present [Ioannis Theodosiadis](mailto:ioannis@seoultech.ac.kr), SEOULTECH University

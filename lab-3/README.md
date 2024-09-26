@@ -1,4 +1,4 @@
-# Open-Source Software Labs
+# Python Lab #3: Turtle Runaway
 >
 > [!NOTE]
 > Copyright 2024 - present [Ioannis Theodosiadis](mailto:ioannis@seoultech.ac.kr), SEOULTECH University
@@ -16,41 +16,30 @@
 > You should have received a copy of the GNU General Public License
 > along with this program. If not, see <https://www.gnu.org/licenses/>
 
-This repository holds the mandatory labs of the course Open-Source Software at SeoulTech University.
+## Assignment
 
----
+- Complete the given skeleton code (turtle_runaway_skeleton.py)
+- Submit your code (turtle_runaway.py) and its explanation (turtle_runaway.md) with a screenshot (turtle_runaway.png)
 
-- [Lab-1](./lab-1/README.md)
-- [Lab-2](./lab-2/README.md)
-- [Lab-3](./lab-3/README.md)
+## Conditions
 
-## How to run the Labs
+- Please follow the above filename convention.
+- You **can** start from scratch (without using the given skeleton code).
+- You **can** freely change the given skeleton code if necessary.
 
-In order to be able to run the labs properly you might need some dependencies installed. So you will need to create a venv and install the requirements.
+## How To Run It
+
+Change into the lab-1 directory.
+
+```PowerShell
+cd lab-3
+```
+
+Run the Python script.
+
+```PowerShell
+python .\turtle_runaway_skeleton.py
+```
 
 > [!IMPORTANT]
-> The following steps require a local and executeable python installation.
-
-```PowerShell
-python -m venv .venv
-```
-
-Activate the virtual environment.
-
-- Windows:
-
-    ```PowerShell
-    .\.venv\Scripts\activate
-    ```
-
-- Linux:
-
-    ```bash
-    source ./.venv/bin/activate
-    ```
-
-Now install the dependecies.
-
-```PowerShell
-pip install -r requirements.txt
-```
+> Take a screenshot when the turlte was caught.
