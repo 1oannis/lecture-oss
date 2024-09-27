@@ -27,6 +27,23 @@
 - You **can** start from scratch (without using the given skeleton code).
 - You **can** freely change the given skeleton code if necessary.
 
+## Requirements
+
+### Mandatory
+
+- **Add a timer (5 points)**: You can freely choose an up/down timer for your purpose.
+- **Add your intelligent Turtle (8 points)**: You can assign a role, runner or chaser or both.
+- **Add your concept of score (7 points)**: You can define the score by yourself
+
+### Optional
+
+- Change the window title to _Turtle Runaway_
+- Add background or game arena
+- Add a concept of stages
+- Add opening, closing, and ending
+- Fix a bug (e.g. switching colors)
+- Anyway, you can do whatever you want to make the game fun.
+
 ## How To Run It
 
 Change into the lab-1 directory.
