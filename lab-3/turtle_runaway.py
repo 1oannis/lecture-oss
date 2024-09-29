@@ -1,7 +1,16 @@
 import tkinter as tk
 import turtle
 import random
-import time  # Import time for managing timer
+import time
+import math
+
+
+# Define the boundary limits for the turtles (e.g., within a 700x700 canvas)
+BOUNDARY_X = 350
+BOUNDARY_Y = 350
+BOUNDARY_BUFFER = 50  # Buffer zone where the runner will try to avoid the boundary
+ESCAPE_DISTANCE = 100  # Distance at which the runner will start orthogonal escape
+COOLDOWN_STEPS = 10  # Number of steps after orthogonal escape before randomness resumes
 
 
 class RunawayGame:
@@ -77,9 +86,10 @@ class RunawayGame:
         if self.game_over:  # Stop the game if it's over
             return
 
+        # Only the runner uses AI to avoid the chaser
         self.runner.run_ai(self.chaser.pos(), self.chaser.heading())
-        self.chaser.run_ai(self.runner.pos(), self.runner.heading())
 
+        # Check if the runner is caught
         is_catched = self.is_catched()
 
         if is_catched:
@@ -146,10 +156,12 @@ class ManualMover(turtle.RawTurtle):
     def move_up(self):
         if not self.game.game_over:  # Only move if the game is not over
             self.forward(self.step_move)
+            self.check_boundary()
 
     def move_down(self):
         if not self.game.game_over:  # Only move if the game is not over
             self.backward(self.step_move)
+            self.check_boundary()
 
     def move_left(self):
         if not self.game.game_over:  # Only move if the game is not over
@@ -159,24 +171,92 @@ class ManualMover(turtle.RawTurtle):
         if not self.game.game_over:  # Only move if the game is not over
             self.right(self.step_turn)
 
-    def run_ai(self, opp_pos, opp_heading):
-        pass
+    def check_boundary(self):
+        """Ensure the chaser stays within the screen boundaries."""
+        x, y = self.pos()
+        if x < -BOUNDARY_X:
+            self.setx(-BOUNDARY_X)
+        if x > BOUNDARY_X:
+            self.setx(BOUNDARY_X)
+        if y < -BOUNDARY_Y:
+            self.sety(-BOUNDARY_Y)
+        if y > BOUNDARY_Y:
+            self.sety(BOUNDARY_Y)
 
 
-class RandomMover(turtle.RawTurtle):
+class IntelligentMover(turtle.RawTurtle):
     def __init__(self, canvas, step_move=10, step_turn=10):
         super().__init__(canvas)
         self.step_move = step_move
         self.step_turn = step_turn
+        self.cooldown = 0  # Cooldown counter to prevent immediate reversal after orthogonal escape
 
-    def run_ai(self, opp_pos, opp_heading):
-        mode = random.randint(0, 2)
-        if mode == 0:
+    def run_ai(self, chaser_pos, chaser_heading):
+        """Move intelligently to avoid the chaser and boundaries."""
+        runner_pos = self.pos()
+        dx = runner_pos[0] - chaser_pos[0]
+        dy = runner_pos[1] - chaser_pos[1]
+        distance_to_chaser = math.sqrt(dx**2 + dy**2)
+
+        if self.cooldown > 0:
+            # Continue moving in the same direction during cooldown
             self.forward(self.step_move)
-        elif mode == 1:
-            self.left(self.step_turn)
-        elif mode == 2:
-            self.right(self.step_turn)
+            self.cooldown -= 1
+        elif distance_to_chaser < ESCAPE_DISTANCE:
+            # If the player is too close, move orthogonally and set cooldown
+            self.orthogonal_escape(chaser_heading)
+            self.cooldown = COOLDOWN_STEPS  # Prevent direction changes for a few steps
+        elif self.near_boundary():
+            # Avoid boundary by moving away
+            self.avoid_boundary()
+        else:
+            # Randomize the movement to make it less predictable
+            escape_angle = math.atan2(dy, dx) * (180 / math.pi) + random.uniform(-45, 45)
+            self.setheading(escape_angle)
+            self.forward(self.step_move)
+
+        # Ensure the runner stays within boundaries
+        self.check_boundary()
+
+    def orthogonal_escape(self, chaser_heading):
+        """Move orthogonally to the player's direction to gain more distance."""
+        # Move left or right depending on a random choice
+        orthogonal_angle = chaser_heading + (90 if random.choice([True, False]) else -90)
+        self.setheading(orthogonal_angle)
+        self.forward(self.step_move)
+
+    def near_boundary(self):
+        """Check if the runner is near the boundary."""
+        x, y = self.pos()
+        return (x < -BOUNDARY_X + BOUNDARY_BUFFER or
+                x > BOUNDARY_X - BOUNDARY_BUFFER or
+                y < -BOUNDARY_Y + BOUNDARY_BUFFER or
+                y > BOUNDARY_Y - BOUNDARY_BUFFER)
+
+    def avoid_boundary(self):
+        """Move away from the boundary when too close."""
+        x, y = self.pos()
+        if x < -BOUNDARY_X + BOUNDARY_BUFFER:
+            self.setheading(0)  # Move right
+        elif x > BOUNDARY_X - BOUNDARY_BUFFER:
+            self.setheading(180)  # Move left
+        if y < -BOUNDARY_Y + BOUNDARY_BUFFER:
+            self.setheading(90)  # Move up
+        elif y > BOUNDARY_Y - BOUNDARY_BUFFER:
+            self.setheading(270)  # Move down
+        self.forward(self.step_move)
+
+    def check_boundary(self):
+        """Ensure the runner stays within the screen boundaries."""
+        x, y = self.pos()
+        if x < -BOUNDARY_X:
+            self.setx(-BOUNDARY_X)
+        if x > BOUNDARY_X:
+            self.setx(BOUNDARY_X)
+        if y < -BOUNDARY_Y:
+            self.sety(-BOUNDARY_Y)
+        if y > BOUNDARY_Y:
+            self.sety(BOUNDARY_Y)
 
 
 if __name__ == '__main__':
@@ -186,8 +266,8 @@ if __name__ == '__main__':
     canvas.pack()
     screen = turtle.TurtleScreen(canvas)
 
-    runner = RandomMover(screen)
-    chaser = ManualMover(screen, None)
+    runner = IntelligentMover(screen)  # Initialize intelligent runner turtle
+    chaser = ManualMover(screen, None)  # Initialize chaser turtle
 
     # Create the game and pass both runner and chaser turtles
     game = RunawayGame(screen, runner, chaser)
