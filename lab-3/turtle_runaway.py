@@ -34,7 +34,33 @@ class RunawayGame:
         dx, dy = p[0] - q[0], p[1] - q[1]
         return dx ** 2 + dy ** 2 < self.catch_radius2
 
+    def start_countdown(self):
+        """Initiate the countdown before the game starts."""
+        self.drawer.clear()
+        self.drawer.penup()  # Make sure pen is up before moving
+        self.drawer.setpos(0, 0)
+        self.drawer.write("3", align='center', font=('Arial', 48, 'bold'))
+        self.canvas.ontimer(lambda: self.update_countdown(2), 1000)
+
+    def update_countdown(self, number):
+        """Update the countdown on the screen."""
+        self.drawer.clear()
+        if number > 0:
+            self.drawer.write(f"{number}", align='center', font=('Arial', 48, 'bold'))
+            self.canvas.ontimer(lambda: self.update_countdown(number - 1), 1000)
+        else:
+            self.drawer.write("Catch The Runner!", align='center', font=('Arial', 24, 'bold'))
+            self.canvas.ontimer(self.start_game, 1000)
+
+    def start_game(self):
+        """Start the game after countdown and display message."""
+        self.drawer.clear()
+        self.start(init_dist=400, ai_timer_msec=100)
+
     def start(self, init_dist=400, ai_timer_msec=100):
+        self.runner.penup()
+        self.chaser.penup()
+
         self.runner.setpos((-init_dist / 2, 0))
         self.runner.setheading(0)
         self.chaser.setpos((+init_dist / 2, 0))
@@ -93,7 +119,7 @@ class RunawayGame:
             self.drawer.clear()
             self.drawer.penup()  # Ensure pen is up before moving the drawer
             self.drawer.setpos(0, 320)
-            self.drawer.write(f'Time: {self.time_left:.3f}', align='center', font=('Arial', 16, 'normal'))
+            self.drawer.write(f'Remaining Time: {self.time_left:.3f}', align='center', font=('Arial', 16, 'normal'))
 
             # Check if time is up
             if self.time_left > 0:
@@ -166,5 +192,5 @@ if __name__ == '__main__':
     # Create the game and pass both runner and chaser turtles
     game = RunawayGame(screen, runner, chaser)
     chaser.game = game  # Set the game reference in the chaser turtle
-    game.start()
+    game.start_countdown()
     screen.mainloop()
