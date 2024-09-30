@@ -211,12 +211,16 @@ class IntelligentMover(turtle.RawTurtle):
             self.avoid_boundary()
         else:
             # Randomize the movement to make it less predictable
-            escape_angle = math.atan2(dy, dx) * (180 / math.pi) + random.uniform(-45, 45)
-            self.setheading(escape_angle)
-            self.forward(self.step_move)
+            self.random_movement()
 
         # Ensure the runner stays within boundaries
         self.check_boundary()
+
+    def random_movement(self):
+        """Performs continuous random movement."""
+        random_angle = random.uniform(-45, 45)  # Random small angle changes
+        self.setheading(self.heading() + random_angle)  # Adjust current heading
+        self.forward(self.step_move)
 
     def orthogonal_escape(self, chaser_heading):
         """Move orthogonally to the player's direction to gain more distance."""
