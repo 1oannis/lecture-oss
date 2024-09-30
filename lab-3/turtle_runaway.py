@@ -284,11 +284,13 @@ class IntelligentMover(turtle.RawTurtle):
 if __name__ == '__main__':
     # Use 'TurtleScreen' instead of 'Screen' to prevent an exception from the singleton 'Screen'
     root = tk.Tk()
+    root.title("Turtle Runaway")
     canvas = tk.Canvas(root, width=700, height=700)
     canvas.pack()
     screen = turtle.TurtleScreen(canvas)
+    screen.bgcolor('#acf2b0')
 
-    runner = IntelligentMover(screen)  # Initialize intelligent runner turtle
+    runner = IntelligentMover(screen, step_move=20)  # Initialize intelligent runner turtle
     chaser = ManualMover(screen, None)  # Initialize chaser turtle
 
     # Create the game and pass both runner and chaser turtles
