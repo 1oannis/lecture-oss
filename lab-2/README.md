@@ -31,7 +31,7 @@
 
 ## How To Run It
 
-Change into the lab-1 directory.
+Change into the lab-2 directory.
 
 ```PowerShell
 cd lab-2

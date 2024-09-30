@@ -46,7 +46,7 @@
 
 ## How To Run It
 
-Change into the lab-1 directory.
+Change into the lab-3 directory.
 
 ```PowerShell
 cd lab-3
@@ -55,8 +55,5 @@ cd lab-3
 Run the Python script.
 
 ```PowerShell
-python .\turtle_runaway_skeleton.py
+python .\turtle_runaway.py
 ```
-
-> [!IMPORTANT]
-> Take a screenshot when the turlte was caught.
