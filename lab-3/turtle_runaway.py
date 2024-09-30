@@ -22,6 +22,7 @@ class RunawayGame:
         self.time_left = 15.0  # Set initial time to 15 seconds
         self.timer_running = False  # Flag to indicate if the timer is running
         self.game_over = False  # Flag to stop the game when it's over
+        self.distance_moved = 0.0  # Track the distance moved by the player (chaser)
 
         # Initialize 'runner' and 'chaser'
         self.runner.shape('turtle')
@@ -66,7 +67,7 @@ class RunawayGame:
         self.drawer.clear()
         self.start(init_dist=400, ai_timer_msec=100)
 
-    def start(self, init_dist=400, ai_timer_msec=100):
+    def start(self, init_dist=400, ai_timer_msec=50):
         self.runner.penup()
         self.chaser.penup()
 
@@ -105,19 +106,25 @@ class RunawayGame:
         self.game_over = True  # Set the game over flag
         self.timer_running = False  # Stop the timer
 
-        # Display the appropriate message
+        time_taken = time.time() - self.start_time  # Calculate time taken
+        if won:
+            # Player won, calculate score based on time and distance moved
+            score = self.calculate_score(time_taken)
+            self.display_score(score, time_taken)
+
+    def calculate_score(self, time_taken):
+        """Calculate the combo score based on time and distance moved."""
+        time_score = 1000 - (time_taken * 50)
+        distance_score = 1000 - (self.distance_moved * 1.5)
+        return max(0, time_score + distance_score)  # Ensure score doesn't go below 0
+
+    def display_score(self, score, time_taken):
+        """Display the final score and time taken."""
         self.drawer.clear()
         self.drawer.penup()  # Ensure pen is up before moving the drawer
         self.drawer.setpos(0, 0)
-
-        if won:
-            # Player won, display win message and time taken
-            time_taken = 15.0 - self.time_left
-            self.drawer.write(f'You Won!\nTime taken: {time_taken:.3f} seconds',
-                              align='center', font=('Arial', 24, 'normal'))
-        else:
-            # Player lost, display lose message
-            self.drawer.write('You Lost!', align='center', font=('Arial', 24, 'normal'))
+        self.drawer.write(f'You Won!\nTime taken: {time_taken:.3f} seconds\nScore: {score:.2f}',
+                          align='center', font=('Arial', 24, 'normal'))
 
     def update_timer(self):
         """Update the countdown timer and display it at the top of the screen."""
@@ -145,6 +152,7 @@ class ManualMover(turtle.RawTurtle):
         self.step_move = step_move
         self.step_turn = step_turn
         self.game = game  # Reference to the game to check the game_over flag
+        self.previous_position = self.pos()  # Track the player's previous position
 
         # Register event handlers
         canvas.onkeypress(self.move_up, 'Up')
@@ -156,11 +164,13 @@ class ManualMover(turtle.RawTurtle):
     def move_up(self):
         if not self.game.game_over:  # Only move if the game is not over
             self.forward(self.step_move)
+            self.update_distance()
             self.check_boundary()
 
     def move_down(self):
         if not self.game.game_over:  # Only move if the game is not over
             self.backward(self.step_move)
+            self.update_distance()
             self.check_boundary()
 
     def move_left(self):
@@ -170,6 +180,14 @@ class ManualMover(turtle.RawTurtle):
     def move_right(self):
         if not self.game.game_over:  # Only move if the game is not over
             self.right(self.step_turn)
+
+    def update_distance(self):
+        """Update the total distance moved by the player (chaser)."""
+        current_position = self.pos()
+        distance_moved = math.sqrt((current_position[0] - self.previous_position[0]) ** 2 +
+                                   (current_position[1] - self.previous_position[1]) ** 2)
+        self.game.distance_moved += distance_moved  # Add to the total distance
+        self.previous_position = current_position  # Update the previous position
 
     def check_boundary(self):
         """Ensure the chaser stays within the screen boundaries."""
