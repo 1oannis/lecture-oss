@@ -20,6 +20,8 @@
 
 **Turtle Runaway** is a simple yet challenging game where the player controls a <span style="color:red">**chaser turtle**</span> and attempts to catch a computer-controlled <span style="color:blue">**runner turtle**</span>. The runner moves intelligently to avoid being caught, and the player's skill is measured by how efficiently they catch the runner, with a score based on both time and movement efficiency.
 
+![Schreenshot of the win screen](./turtle_runaway.png)
+
 ## How to Play
 
 - You control the <span style="color:red">**chaser turtle**</span> in red using the arrow keys.
