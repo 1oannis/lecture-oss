@@ -25,9 +25,9 @@
 
 - Please follow the above filename convention.
 - Please do not use other libraries such as NumPy and others. Do it yourself with only Python built-in functions.
-- You can start from scratch (without using the given skeleton code).
+- You **can** start from scratch (without using the given skeleton code).
   - However, you should use the given data.
-- You can freely change the given skeleton code if necessary
+- You **can** freely change the given skeleton code if necessary
 
 ## How To Run It
 

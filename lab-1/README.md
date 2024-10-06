@@ -25,9 +25,9 @@
 ## Conditions
 
 - Please follow the above filename convention.
-- You can start from scratch (without using the given skeleton code).
+- You **can** start from scratch (without using the given skeleton code).
   - However, you should use the same data shown in the slide 5.
-- You can freely change the given skeleton code if necessary
+- You **can** freely change the given skeleton code if necessary
 
 ## How To Run It
 
