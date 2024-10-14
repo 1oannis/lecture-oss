@@ -24,6 +24,7 @@ This repository holds the mandatory labs of the course Open-Source Software at S
 - [Lab-2](./lab-2/README.md)
 - [Lab-3](./lab-3/README.md)
 - [Lab-4](./lab-4/README.md)
+- [Lab-5](./lab-5/README.md)
 
 ## How to run the Labs
 
