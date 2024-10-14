@@ -20,11 +20,11 @@ This repository holds the mandatory labs of the course Open-Source Software at S
 
 ---
 
-- [Lab-1](./lab-1/README.md)
-- [Lab-2](./lab-2/README.md)
-- [Lab-3](./lab-3/README.md)
-- [Lab-4](./lab-4/README.md)
-- [Lab-5](./lab-5/README.md)
+- [Lab-1](./lab-1/README.md) - Python Lab #1: Korean COVID-19 New Cases by Region
+- [Lab-2](./lab-2/README.md) - Python Lab #2: Midterm and Final Exam Analysis
+- [Lab-3](./lab-3/README.md) - Python Lab #3: Turtle Runaway
+- [Lab-4](./lab-4/README.md) - Math Lab #1: Midterm and Final Exam Visualization
+- [Lab-5](./lab-5/README.md) - Math Lab #2: Final Exam Score Prediction
 
 ## How to run the Labs
 
