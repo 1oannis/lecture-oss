@@ -26,6 +26,7 @@ This repository holds the mandatory labs of the course Open-Source Software at S
 - [Lab-4](./lab-4/README.md) - Math Lab #1: Midterm and Final Exam Visualization
 - [Lab-5](./lab-5/README.md) - Math Lab #2: Final Exam Score Prediction
 - [Lab-6](./lab-6/README.md) - Math Lab #3: Multivariate Nonlinear Optimization
+- [Lab-7](./lab-7/README.md) - ML Lab #1: Breast Cancer Classification
 
 ## How to run the Labs
 
