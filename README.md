@@ -28,6 +28,7 @@ This repository holds the mandatory labs of the course Open-Source Software at S
 - [Lab-6](./lab-6/README.md) - Math Lab #3: Multivariate Nonlinear Optimization
 - [Lab-7](./lab-7/README.md) - ML Lab #1: Breast Cancer Classification
 - [Lab-8](./lab-8/README.md) - ML Lab #2: Breast Cancer Classification with Cross-validation
+- [Lab-9](./lab-9/README.md) - DL Lab #1: Object Detection using YOLO
 
 ## How to run the Labs
 
@@ -36,26 +37,40 @@ In order to be able to run the labs properly you might need some dependencies in
 > [!IMPORTANT]
 > The following steps require a local and executeable python installation.
 
-```PowerShell
-python -m venv .venv
-```
-
-Activate the virtual environment.
-
-- Windows:
+1. First create a python virtual environment in the root directory:
 
     ```PowerShell
-    .\.venv\Scripts\activate
+    python -m venv .venv
     ```
 
-- Linux:
+1. Activate the venv:
 
-    ```bash
-    source ./.venv/bin/activate
+    - Windows:
+
+        ```PowerShell
+        .\venv\Script\activate
+        ```
+
+    - Mac / Linux:
+
+        ```bash
+        source myenv/bin/activate
+        ```
+
+1. Upgrade pip if necessary:
+
+    ```PowerShell
+    python -m pip install --upgrade pip
     ```
 
-Now install the dependecies.
+1. Install the required dependencies:
 
-```PowerShell
-pip install -r requirements.txt
-```
+    ```PowerShell
+    pip install -r requirements.txt
+    ```
+
+1. For lab-9 also install the pytorch dependenies:
+
+    ```PowerShell
+    pip install -r requirements_torch.txt
+    ```
